@@ -58,6 +58,25 @@ class App extends Component {
     }));
   };
 
+  // вносим данніе в локалсторейдж
+  componentDidUpdate(prevProps, prevState) {
+    console.log('update');
+
+    localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+  }
+  // данные не исчезают при перезагрузке т к сохранены в локалсторейдж
+  componentDidMount() {
+    console.log('save');
+
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+    console.log(parsedContacts);
+    // записываем в стейт сохраненыые данные (если они есть)из локал сторейдж
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
   render() {
     const { filter } = this.state;
     // отфильтрованные контакты
