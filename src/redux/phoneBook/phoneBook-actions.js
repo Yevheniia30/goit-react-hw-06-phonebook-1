@@ -15,4 +15,10 @@ const deleteContact = id => ({
   payload: id,
 });
 
-export default { addContact, deleteContact };
+// event и прочие события в actions не передаются
+const filterContact = filter => ({
+  type: actionTypes.FILTER,
+  payload: filter,
+});
+
+export default { addContact, deleteContact, filterContact };

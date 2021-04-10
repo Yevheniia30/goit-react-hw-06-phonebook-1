@@ -1,3 +1,6 @@
+import { connect } from 'react-redux';
+import phoneBookActions from '../../redux/phoneBook/phoneBook-actions';
+
 import PropTypes from 'prop-types';
 import s from './Filter.module.css';
 
@@ -24,4 +27,13 @@ Filter.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export default Filter;
+const mapStateToProps = state => ({
+  filter: state.phoneBook.filter,
+});
+
+const mapDispatchToProps = dispatch => ({
+  onChange: event =>
+    dispatch(phoneBookActions.filterContact(event.target.value)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);

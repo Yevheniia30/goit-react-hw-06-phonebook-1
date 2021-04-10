@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import shortid from 'shortid';
+// import shortid from 'shortid';
 import s from './App.module.css';
 import Form from './Components/Form';
 import ContactsList from './Components/ContactsList';
@@ -42,18 +42,18 @@ class App extends Component {
   // ---------------------- ФИЛЬТР-------------------------------------------
 
   // записываем значение ипута фильтра в стейт
-  filterHandler = event => {
-    this.setState({ filter: event.currentTarget.value });
-  };
+  // filterHandler = event => {
+  //   this.setState({ filter: event.currentTarget.value });
+  // };
 
   // ф-ция фильтра по имени
-  getFilteredContacts = () => {
-    const { contacts, filter } = this.state;
-    const normalizedFilter = filter.toLowerCase();
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter),
-    );
-  };
+  // getFilteredContacts = () => {
+  //   const { contacts, filter } = this.state;
+  //   const normalizedFilter = filter.toLowerCase();
+  //   return contacts.filter(contact =>
+  //     contact.name.toLowerCase().includes(normalizedFilter),
+  //   );
+  // };
 
   // -----------------------УДАЛЕНИЕ---------------------------------------
 
@@ -97,6 +97,7 @@ class App extends Component {
         <Form />
         <h2>Contacts</h2>
         {/* <Filter filter={filter} onChange={this.filterHandler} /> */}
+        <Filter />
         {/* <ContactsList
           contacts={filteredContacts}
           onDelete={this.deleteHandler}

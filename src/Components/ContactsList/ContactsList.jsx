@@ -31,9 +31,26 @@ ContactsList.propTypes = {
   onDelete: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  contacts: state.phoneBook.contacts,
-});
+// получение только отфильтрованных имен в список
+// const getFilteredContacts = () => {
+//   const { contacts, filter } = this.state;
+//   const normalizedFilter = filter.toLowerCase();
+//   return contacts.filter(contact =>
+//     contact.name.toLowerCase().includes(normalizedFilter),
+//   );
+// };
+
+const mapStateToProps = state => {
+  const { contacts, filter } = state.phoneBook;
+  const normalizedFilter = filter.toLowerCase();
+
+  const filteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(normalizedFilter),
+  );
+  return {
+    contacts: filteredContacts,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   onDelete: id => dispatch(phoneBookActions.deleteContact(id)),

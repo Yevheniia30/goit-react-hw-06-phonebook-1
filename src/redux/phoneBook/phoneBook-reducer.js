@@ -4,6 +4,7 @@ import actionTypes from './phoneBook-types';
 // редюсер для контактов
 const contacts = (state = [], { type, payload }) => {
   switch (type) {
+    //   добавление
     case actionTypes.ADD:
       //   return [...state, payload];
       return state.find(
@@ -12,6 +13,7 @@ const contacts = (state = [], { type, payload }) => {
         ? alert('This subscriber is already in contacts')
         : [...state, payload];
 
+    // удаление
     case actionTypes.DELETE:
       return state.filter(contact => contact.id !== payload);
 
@@ -20,8 +22,15 @@ const contacts = (state = [], { type, payload }) => {
   }
 };
 
-const filter = (state = '', action) => {
-  return state;
+// фильтр
+const filter = (state = '', { type, payload }) => {
+  switch (type) {
+    case actionTypes.FILTER:
+      return payload;
+
+    default:
+      return state;
+  }
 };
 
 export default combineReducers({
