@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import phoneBookActions from '../../redux/phoneBook/phoneBook-actions';
 import shortid from 'shortid';
 import s from './Form.module.css';
 
@@ -73,4 +74,12 @@ class Form extends Component {
   }
 }
 
-export default Form;
+// state здесь не нужен, поэтому mapStateToProps не используем
+// используем только mapDispatchToProps
+
+const mapDispatchToProps = dispatch => ({
+  onSubmit: ({ name, number }) =>
+    dispatch(phoneBookActions.addContact({ name, number })),
+});
+
+export default connect(null, mapDispatchToProps)(Form);

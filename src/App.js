@@ -8,34 +8,38 @@ import Filter from './Components/Filter';
 
 class App extends Component {
   state = {
-    contacts: [],
-    filter: '',
+    // contacts: [],
+    // filter: '',
   };
+
+  // -----------------------ДОБАВЛЕНИЕ-----------------------------------
 
   // ф-ция для получения данных введенных в форму
-  formOnSubmitHandler = ({ name, number }) => {
-    const { contacts } = this.state;
-    const contact = {
-      id: shortid.generate(),
-      name,
-      number,
-    };
+  // formOnSubmitHandler = ({ name, number }) => {
+  //   const { contacts } = this.state;
+  //   const contact = {
+  //     id: shortid.generate(),
+  //     name,
+  //     number,
+  //   };
 
-    // выводим предупреждение если хотя бы одно из полей не заполнено
-    if (!name || !number) {
-      alert('Enter name and phone number!');
-      return;
-    }
+  // выводим предупреждение если хотя бы одно из полей не заполнено
+  // if (!name || !number) {
+  //   alert('Enter name and phone number!');
+  //   return;
+  // }
 
-    // добавляем каждый введенный контакт в массив (кроме тех которые там уже есть)
-    contacts.find(
-      ({ name, number }) => name === contact.name || number === contact.number,
-    )
-      ? alert('This subscriber is already in contacts')
-      : this.setState(prevState => ({
-          contacts: [contact, ...prevState.contacts],
-        }));
-  };
+  // добавляем каждый введенный контакт в массив (кроме тех которые там уже есть)
+  //   contacts.find(
+  //     ({ name, number }) => name === contact.name || number === contact.number,
+  //   )
+  //     ? alert('This subscriber is already in contacts')
+  //     : this.setState(prevState => ({
+  //         contacts: [contact, ...prevState.contacts],
+  //       }));
+  // };
+
+  // ---------------------- ФИЛЬТР-------------------------------------------
 
   // записываем значение ипута фильтра в стейт
   filterHandler = event => {
@@ -51,6 +55,8 @@ class App extends Component {
     );
   };
 
+  // -----------------------УДАЛЕНИЕ---------------------------------------
+
   // удаление контакта
   deleteHandler = id => {
     this.setState(prevState => ({
@@ -58,19 +64,21 @@ class App extends Component {
     }));
   };
 
+  // ------------------------ЛОКАЛСТОРЕЙДЖ----------------------------------
+
   // вносим данніе в локалсторейдж
   componentDidUpdate(prevProps, prevState) {
-    console.log('update');
+    // console.log('update');
 
     localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
   }
   // данные не исчезают при перезагрузке т к сохранены в локалсторейдж
   componentDidMount() {
-    console.log('save');
+    // console.log('save');
 
     const contacts = localStorage.getItem('contacts');
     const parsedContacts = JSON.parse(contacts);
-    console.log(parsedContacts);
+    // console.log(parsedContacts);
     // записываем в стейт сохраненыые данные (если они есть)из локал сторейдж
     if (parsedContacts) {
       this.setState({ contacts: parsedContacts });
@@ -78,20 +86,21 @@ class App extends Component {
   }
 
   render() {
-    const { filter } = this.state;
+    // const { filter } = this.state;
     // отфильтрованные контакты
-    const filteredContacts = this.getFilteredContacts();
+    // const filteredContacts = this.getFilteredContacts();
 
     return (
       <div className={s.App}>
         <h1>Phonebook</h1>
-        <Form onSubmit={this.formOnSubmitHandler} />
+        {/* <Form onSubmit={this.formOnSubmitHandler} /> */}
+        <Form />
         <h2>Contacts</h2>
-        <Filter filter={filter} onChange={this.filterHandler} />
-        <ContactsList
+        {/* <Filter filter={filter} onChange={this.filterHandler} /> */}
+        {/* <ContactsList
           contacts={filteredContacts}
           onDelete={this.deleteHandler}
-        />
+        /> */}
       </div>
     );
   }
