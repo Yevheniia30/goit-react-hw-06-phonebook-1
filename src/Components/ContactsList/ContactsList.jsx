@@ -1,3 +1,6 @@
+import { connect } from 'react-redux';
+import phoneBookActions from '../../redux/phoneBook/phoneBook-actions';
+
 import PropTypes from 'prop-types';
 import s from './ContactsList.module.css';
 
@@ -28,4 +31,12 @@ ContactsList.propTypes = {
   onDelete: PropTypes.func.isRequired,
 };
 
-export default ContactsList;
+const mapStateToProps = state => ({
+  contacts: state.phoneBook.contacts,
+});
+
+const mapDispatchToProps = dispatch => ({
+  onDelete: id => dispatch(phoneBookActions.deleteContact(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactsList);

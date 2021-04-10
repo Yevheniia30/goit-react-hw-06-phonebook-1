@@ -10,4 +10,9 @@ const addContact = ({ name, number }) => ({
   },
 });
 
-export default { addContact };
+const deleteContact = id => ({
+  type: actionTypes.DELETE,
+  payload: id,
+});
+
+export default { addContact, deleteContact };

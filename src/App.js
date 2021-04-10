@@ -58,11 +58,11 @@ class App extends Component {
   // -----------------------УДАЛЕНИЕ---------------------------------------
 
   // удаление контакта
-  deleteHandler = id => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== id),
-    }));
-  };
+  // deleteHandler = id => {
+  //   this.setState(prevState => ({
+  //     contacts: prevState.contacts.filter(contact => contact.id !== id),
+  //   }));
+  // };
 
   // ------------------------ЛОКАЛСТОРЕЙДЖ----------------------------------
 
@@ -101,6 +101,7 @@ class App extends Component {
           contacts={filteredContacts}
           onDelete={this.deleteHandler}
         /> */}
+        <ContactsList />
       </div>
     );
   }
