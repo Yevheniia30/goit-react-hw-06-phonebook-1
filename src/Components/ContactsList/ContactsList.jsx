@@ -41,11 +41,20 @@ ContactsList.propTypes = {
 // };
 
 const mapStateToProps = state => {
+  // const { contacts, filter } = state.phoneBook;
+  // const normalizedFilter = filter.toLowerCase();
+
+  // const filteredContacts = contacts.filter(contact =>
+  //   contact.name.toLowerCase().includes(normalizedFilter),
+  // );
+  // return {
+  //   contacts: filteredContacts,
+  // };
+
   const { contacts, filter } = state.phoneBook;
   const normalizedFilter = filter.toLowerCase();
-
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizedFilter),
+  const filteredContacts = contacts.filter(({ name }) =>
+    name.toLowerCase().includes(normalizedFilter),
   );
   return {
     contacts: filteredContacts,
