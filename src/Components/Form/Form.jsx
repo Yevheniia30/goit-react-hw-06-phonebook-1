@@ -22,7 +22,12 @@ class Form extends Component {
 
   // ф-ция сабмит на форме
   handleSubmit = event => {
+    const { name, number } = this.state;
     event.preventDefault();
+    if (!name || !number) {
+      alert('Enter name and phone number!');
+      return;
+    }
     this.props.onSubmit(this.state);
 
     this.reset();
